@@ -47,7 +47,8 @@ const sample = {title:'Blog0',
 content:"eonveavnnp;eo",
 author:"MG",
 id:1,
-ranking:1}
+ranking:1,
+likes:1000}
 
 app.post('/',async (req,res)=>{
     const post = new blog(sample);
@@ -61,8 +62,16 @@ app.post('/',async (req,res)=>{
 })
 
 app.get('/',async(req,res)=>{
- let data = await blog.find()
- res.status(200).json(data);
+    try{
+
+        let data = await blog.find().sort({likes:1});  //Sorting according to the number likes
+        
+        res.status(200).json(data);
+    }
+    
+    catch(error){
+        res.status(500).json(error)
+    }
 })
 
 

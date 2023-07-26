@@ -20,6 +20,10 @@ const Blogs = new mongoose.Schema({
     ranking:{
         type:Number,
         require:true
+    },
+    likes:{
+        type:Number,
+        require:true
     }
     
 
